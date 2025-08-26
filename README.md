@@ -1,50 +1,62 @@
-# Welcome to your Expo app 👋
+# Harima Weather
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Expo/React Native 製の天気アプリ（ポートフォリオ用）。  
+位置情報から天気 API を叩き、お気に入り地点を管理できるシンプルな天気アプリです。  
+まだ骨組み段階ですが、今後 24h/7日予報やオフラインキャッシュなどを実装予定です。
 
-## Get started
+---
 
-1. Install dependencies
+## デモ
+開発中  
+（It works. の画面まで動作確認済み）
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## 技術スタック
+- Expo (SDK 53)
+- React Native 0.79
+- TypeScript 5
+- expo-router 5
+- react-native-safe-area-context
+- react-native-screens
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+## セットアップ
 ```bash
-npm run reset-project
+# install
+npm install
+
+# run
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- Web / Android / iOS のいずれでも実行可能  
+- Expo Go アプリで QR コードを読み取れば実機確認も可能
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## ディレクトリ構成
+```
+app/              ルーティング（expo-router）
+  _layout.tsx     共通レイアウト
+  index.tsx       初期画面（It works.）
+assets/           アイコン・画像など
+components/       再利用コンポーネント
+constants/        定数
+hooks/            カスタムフック
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+## 今後の予定
+- [ ] 位置情報から天気 API (Open-Meteo など) を取得  
+- [ ] お気に入り地点の保存 (AsyncStorage)  
+- [ ] 24時間 / 7日予報のグラフ表示 (victory-native)  
+- [ ] オフラインキャッシュ  
+- [ ] ダークモード対応  
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## ライセンス
+MIT
