@@ -55,6 +55,7 @@ hooks/            カスタムフック
 
 ## 今後の予定
 
+- [x] Expo プロジェクト作成 & expo-router 導入
 - [x] /weather 画面を追加
 - [ ] 位置情報から天気 API (Open-Meteo など) を取得
 - [ ] お気に入り地点の保存 (AsyncStorage)
