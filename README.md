@@ -1,26 +1,19 @@
 # Harima Weather
 
-React Native (Expo) 製のポートフォリオアプリ。  
-位置情報から天気 API を叩き、現在の気温や予報を表示する。
+Expo/React Native 製の天気アプリ（ポートフォリオ用）。  
+位置情報から天気 API を叩き、お気に入り地点を管理できるシンプルな天気アプリです。
 
 ---
 
-## 技術スタック
+## デモ
 
-- Expo (SDK 53)
-- React Native 0.79
-- TypeScript 5
-- expo-router 5
-- react-native-safe-area-context
-- react-native-screens
+開発中（Webで「天気＋7日グラフ＋お気に入り」まで動作確認済み）
 
 ---
 
 ## セットアップ
 
 ```bash
-git clone https://github.com/Marco-YangFu/harima-weather.git
-cd harima-weather
 npm install
 npx expo start
 ```
