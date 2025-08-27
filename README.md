@@ -1,15 +1,7 @@
 # Harima Weather
 
-Expo/React Native 製の天気アプリ（ポートフォリオ用）。  
-位置情報から天気 API を叩き、お気に入り地点を管理できるシンプルな天気アプリです。  
-まだ骨組み段階ですが、今後 24h/7 日予報やオフラインキャッシュなどを実装予定です。
-
----
-
-## デモ
-
-開発中  
-（/Weather 画面追加 動作確認済み）
+React Native (Expo) 製のポートフォリオアプリ。  
+位置情報から天気 API を叩き、現在の気温や予報を表示する。
 
 ---
 
@@ -27,10 +19,9 @@ Expo/React Native 製の天気アプリ（ポートフォリオ用）。
 ## セットアップ
 
 ```bash
-# install
+git clone https://github.com/Marco-YangFu/harima-weather.git
+cd harima-weather
 npm install
-
-# run
 npx expo start
 ```
 
@@ -39,21 +30,7 @@ npx expo start
 
 ---
 
-## ディレクトリ構成
-
-```
-app/              ルーティング（expo-router）
-  _layout.tsx     共通レイアウト
-  index.tsx       初期画面（It works.）
-assets/           アイコン・画像など
-components/       再利用コンポーネント
-constants/        定数
-hooks/            カスタムフック
-```
-
----
-
-## 今後の予定
+## 進捗
 
 - [x] Expo プロジェクト作成 & expo-router 導入
 - [x] /weather 画面を追加
@@ -61,12 +38,25 @@ hooks/            カスタムフック
 - [x] 現在の気温・今日の最高/最低を表示
 - [x] 7日予報を Victory でグラフ表示
 - [x] 「現在地をお気に入りに保存」機能を追加
-- [ ] 24 時間 / 7 日予報のグラフ表示 (victory-native)
-- [ ] オフラインキャッシュ
-- [ ] ダークモード対応
 
 ---
 
-## ライセンス
+## 機能
+
+- 位置情報の取得（expo-location）
+- Open-Meteo から現在/日次予報を取得（APIキー不要）
+- 現在の気温 / 今日の最高・最低を表示
+- 7日予報を Victory グラフで可視化（Web/Native 両対応ラッパー）
+- 現在地をお気に入りに保存（最大3件・AsyncStorage）
+
+## 技術メモ
+
+- API は lib/api.ts に分離し、UI から独立
+- 副作用は hooks/useCurrentLocation, hooks/useWeather へ集約
+- グラフは lib/victoryImports.ts で Web=victory, Native=victory-native を切替
+- tsconfig.json で @/\* パスエイリアスを有効化
+- UI は React Native / Expo Router を利用
+
+## スクリーンショット
 
 MIT
