@@ -58,5 +58,6 @@ npx expo start
 - UI は React Native / Expo Router を利用
 
 ## スクリーンショット
+<img width="573" height="602" alt="スクリーンショット 2025-08-27 230155" src="https://github.com/user-attachments/assets/00979171-b896-43ee-b7ff-48678629c9ef" />
 
 MIT
