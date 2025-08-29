@@ -1,13 +1,15 @@
-import { Stack } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Stack } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function RootLayout() {
   return (
-    <SafeAreaView style={{ flex: 1}}>
-      <Stack screenOptions={{ headerTitle: 'Harima Weather'}}>
-        <Stack.Screen name="index" options={{ title: 'Home'}} />
-        <Stack.Screen name="weather" options={{ title: 'Wheather'}} />
+    <SafeAreaView style={{ flex: 1 }}>
+      <Stack screenOptions={{ headerTitle: 'Harima Weather' }}>
+        <Stack.Screen name="index" options={{ title: 'Home' }} />
+        <Stack.Screen name="weather" options={{ title: 'Wheather' }} />
+        <Stack.Screen name="places/index" options={{ title: 'Favorites' }} />
+        <Stack.Screen name="places/[name]" options={{ title: 'Detail' }} />
       </Stack>
     </SafeAreaView>
-  )
+  );
 }
