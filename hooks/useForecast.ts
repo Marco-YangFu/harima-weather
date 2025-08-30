@@ -36,6 +36,23 @@ export function useForecast(lat?: number | null, lon?: number | null) {
   const [stale, setStale] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const onceRef = useRef(false);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const revalidate = async () => {
+    if (lat == null || lon == null) return;
+    setRefreshing(true);
+    try {
+      const fresh = await fetchForecast(lat, lon);
+      setData(fresh);
+      setStale(false);
+      await setCache(cacheKey(lat, lon), fresh, TTL_MS);
+      setError(null);
+    } catch (e: any) {
+      setError(String(e?.message ?? e));
+    } finally {
+      setRefreshing(false);
+    }
+  };
 
   useEffect(() => {
     if (lat == null || lon == null) return;
@@ -88,5 +105,5 @@ export function useForecast(lat?: number | null, lon?: number | null) {
     };
   }, [lat, lon, online]);
 
-  return { data, loading, error, stale, online };
+  return { data, loading, error, stale, online, refreshing, revalidate };
 }

@@ -1,4 +1,12 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
+import ErrorView from '../components/ErrorView';
+import Loading from '../components/Loading';
 import { useForecast } from '../hooks/useForecast';
 import TempChart from '../components/TempChart';
 import { toHourlySeries } from '../lib/series';
@@ -10,10 +18,16 @@ export default function ForecastScreen({
   lat: number;
   lon: number;
 }) {
-  const { data, loading, error, stale, online } = useForecast(lat, lon);
+  const { data, loading, error, stale, online, refreshing, revalidate } =
+    useForecast(lat, lon);
 
   return (
-    <View style={{ gap: 8, padding: 16 }}>
+    <ScrollView
+      contentContainerStyle={{ gap: 8, padding: 16 }}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={revalidate} />
+      }
+    >
       <View style={{ flexDirection: 'row', gap: 8 }}>
         <Badge
           label={online ? 'オンライン' : 'オフライン'}
@@ -22,19 +36,23 @@ export default function ForecastScreen({
         {stale && <Badge label="古いデータ" type="info" />}
       </View>
 
-      {loading && <ActivityIndicator />}
+      {loading && !data && <Loading />}
 
-      {error && <Text style={{ color: 'crimson' }}>取得失敗：{error}</Text>}
+      {error && (
+        <ErrorView message={error} onRetry={revalidate} disabled={refreshing} />
+      )}
 
-      {data ? (
+      {data && (
         <>
-          <Text>更新:{new Date(data._fetchedAt).toLocaleDateString()}</Text>
+          <Text>更新:{new Date(data._fetchedAt).toLocaleString()}</Text>
           <TempChart series={toHourlySeries(data.hourly)} />
         </>
-      ) : (
-        !loading && <Text>データなし（キャッシュも無し）</Text>
       )}
-    </View>
+
+      {!loading && !data && !error && (
+        <Text>データなし（キャッシュも無し）</Text>
+      )}
+    </ScrollView>
   );
 }
 
