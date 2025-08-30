@@ -32,6 +32,9 @@ npx expo start
 - [x] 7日予報を Victory でグラフ表示
 - [x] 「現在地をお気に入りに保存」機能を追加
 - [x] お気に入り一覧（FlatList）・詳細画面を追加
+- [x] 天気データのキャッシュ機構を実装（AsyncStorage＋TTL 30分）
+- [x] 時間ごとの気温を VictoryLine で折れ線グラフ表示
+- [x] オフライン時はキャッシュを利用して表示（SWR風の更新）
 
 ---
 
@@ -43,6 +46,8 @@ npx expo start
 - 7日予報を Victory グラフで可視化（Web/Native 両対応ラッパー）
 - 現在地をお気に入りに保存（最大3件・AsyncStorage）
 - お気に入り一覧（FlatList）と詳細画面に遷移
+- 天気データをキャッシュしてオフライン対応（有効期限30分）
+- 時間ごとの気温を折れ線グラフで可視化
 
 ## 技術メモ
 
@@ -51,5 +56,10 @@ npx expo start
 - グラフは lib/victoryImports.ts で Web=victory, Native=victory-native を切替
 - tsconfig.json で @/\* パスエイリアスを有効化
 - UI は React Native / Expo Router を利用
+
+## 今後の拡張予定
+
+- 降水量・風速・湿度の表示を追加
+- UI の改善（アイコン、テーマ切替）
 
 MIT
