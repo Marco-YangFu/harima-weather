@@ -43,7 +43,7 @@ export default function PlaceDetail() {
     return (
       <Center>
         <ActivityIndicator />
-        <Text>Fetching weather...</Text>
+        <Text>気温情報を取得中...</Text>
       </Center>
     );
   }
@@ -57,9 +57,9 @@ export default function PlaceDetail() {
       <Text style={{ fontSize: 18, fontWeight: '600' }}>
         {name || 'Detail'}
       </Text>
-      <Text>Now: {t} ℃</Text>
+      <Text>現在: {t} ℃</Text>
       <Text>
-        Today: {lo ?? '-'} / {hi ?? '-'} ℃
+        今日: {lo ?? '-'} / {hi ?? '-'} ℃
       </Text>
     </Center>
   );

@@ -1,7 +1,7 @@
 import {
   View,
   Text,
-  ActivityIndicator,
+  useWindowDimensions,
   ScrollView,
   RefreshControl,
 } from 'react-native';
@@ -10,6 +10,7 @@ import Loading from '../components/Loading';
 import { useForecast } from '../hooks/useForecast';
 import TempChart from '../components/TempChart';
 import { toHourlySeries } from '../lib/series';
+import { useMemo } from 'react';
 
 export default function ForecastScreen({
   lat,
@@ -18,12 +19,23 @@ export default function ForecastScreen({
   lat: number;
   lon: number;
 }) {
+  const { width: screenWidth } = useWindowDimensions();
   const { data, loading, error, stale, online, refreshing, revalidate } =
     useForecast(lat, lon);
+  const series = useMemo(
+    () => (data ? toHourlySeries(data.hourly) : []),
+    [data?.hourly],
+  );
 
   return (
     <ScrollView
-      contentContainerStyle={{ gap: 8, padding: 16 }}
+      contentContainerStyle={{
+        width: screenWidth,
+        gap: 12,
+        paddingVertical: 16,
+        paddingHorizontal: 16,
+        alignItems: 'stretch',
+      }}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={revalidate} />
       }
@@ -44,8 +56,15 @@ export default function ForecastScreen({
 
       {data && (
         <>
-          <Text>更新:{new Date(data._fetchedAt).toLocaleString()}</Text>
-          <TempChart series={toHourlySeries(data.hourly)} />
+          <Text>更新: {new Date(data._fetchedAt).toLocaleString()}</Text>
+          {/* ★ 横幅900px・高さ480pxで強制表示 */}
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <TempChart
+              series={series.slice(0, 24)}
+              forceWidth={900}
+              forceHeight={480}
+            />
+          </ScrollView>
         </>
       )}
 

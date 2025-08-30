@@ -1,7 +1,7 @@
 import { useCurrentLocation } from '@/hooks/useCurrentLocation';
 import { useWeather } from '@/hooks/useWeather';
 import { useFavorites } from '@/hooks/useFavorites';
-import { View, Text, ActivityIndicator, Button } from 'react-native';
+import { View, Text, ActivityIndicator, Pressable } from 'react-native';
 import { SevenDayChart } from '@/components/SevenDayChart';
 
 export default function WeatherScreen() {
@@ -41,7 +41,7 @@ export default function WeatherScreen() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ActivityIndicator />
-        <Text>Fetching weather...</Text>
+        <Text>気温情報を取得中...</Text>
       </View>
     );
   }
@@ -58,15 +58,27 @@ export default function WeatherScreen() {
     <View
       style={{
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'stretch', // ★ 子を横いっぱいに伸ばす
         justifyContent: 'center',
-        gap: 8,
+        paddingHorizontal: 16, // 余白は親で付ける
+        gap: 12,
       }}
     >
-      <Text>Now: {t} ℃</Text>
-      <Text>
-        Today: {d0min ?? '-'} / {d0max ?? '-'} ℃
-      </Text>
+      <View style={{ alignItems: 'center', gap: 4 }}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: '600',
+            textAlign: 'center',
+            color: '#111',
+          }}
+        >
+          現在: {t} ℃
+        </Text>
+        <Text style={{ fontSize: 18, textAlign: 'center', color: '#111' }}>
+          今日: {d0min ?? '-'} / {d0max ?? '-'} ℃
+        </Text>
+      </View>
 
       <SevenDayChart
         labels={data.daily.time}
@@ -74,19 +86,34 @@ export default function WeatherScreen() {
         max={data.daily.temperature_2m_max}
       />
 
-      <Button
-        title="Save Current"
+      <Pressable
         onPress={() => {
-          if (coords)
-            add({ name: 'Current', lat: coords.lat, lon: coords.lon });
+          if (coords) add({ name: '現在地', lat: coords.lat, lon: coords.lon });
         }}
-      />
-
-      {items.map((p) => (
-        <Text key={`${p.name}-${p.lat}-${p.lon}`}>
-          {p.name}: {p.lat}, {p.lon}
+        style={{
+          alignSelf: 'center', // 中央寄せ
+          minWidth: 160, // 幅を固定気味に
+          paddingHorizontal: 16,
+          paddingVertical: 10,
+          borderRadius: 8,
+          backgroundColor: '#3b82f6',
+        }}
+      >
+        <Text style={{ color: '#fff', fontWeight: '700', textAlign: 'center' }}>
+          現在地を保存
         </Text>
-      ))}
+      </Pressable>
+
+      <View style={{ alignItems: 'center', gap: 6 }}>
+        {items.map((p) => (
+          <Text
+            key={`${p.name}-${p.lat})}-${p.lon}`}
+            style={{ fontSize: 18, textAlign: 'center' }}
+          >
+            {p.name}: {p.lat.toFixed(0)}, {p.lon.toFixed(0)}
+          </Text>
+        ))}
+      </View>
     </View>
   );
 }

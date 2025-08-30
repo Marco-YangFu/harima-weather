@@ -15,8 +15,8 @@ export default function PlacesIndex() {
           padding: 16,
         }}
       >
-        <Text>No favorites yet.</Text>
-        <Text>Weather 画面から「Save Current」を押して登録してください。</Text>
+        <Text>お気に入り場所はまだありません。</Text>
+        <Text>気温情報画面から「現在地を保存」を押して登録してください。</Text>
       </View>
     );
   }
@@ -45,7 +45,7 @@ export default function PlacesIndex() {
             >
               <Text style={{ fontWeight: '600' }}>{item.name}</Text>
               <Text style={{ opacity: 0.7 }}>
-                lat {item.lat} / lon {item.lon}
+                緯度 {item.lat.toFixed(0)} / 経度 {item.lon.toFixed(0)}
               </Text>
             </TouchableOpacity>
           </Link>
