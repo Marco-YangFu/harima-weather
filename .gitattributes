@@ -1,0 +1,27 @@
+# すべてのテキストはLFで統一（WindowsでもLFでチェックアウト）
+* text=auto eol=lf
+
+# よくあるテキスト系を念押し
+*.js   text eol=lf
+*.jsx  text eol=lf
+*.ts   text eol=lf
+*.tsx  text eol=lf
+*.json text eol=lf
+*.css  text eol=lf
+*.html text eol=lf
+*.md   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+
+# 画像やバイナリは改行変換しない
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.svg  -text
+*.ttf  binary
+*.woff binary
+*.woff2 binary
+*.map  -text
+*.hbc  binary
