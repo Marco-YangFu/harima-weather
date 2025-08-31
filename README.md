@@ -1,5 +1,9 @@
 # Harima Weather
 
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![Expo](https://img.shields.io/badge/Expo-53-blue)](https://expo.dev/)
+[![Deploy](https://img.shields.io/badge/Deploy-Cloudflare%20Pages-F38020?logo=cloudflare&logoColor=white)](https://harima-weather.pages.dev/)
+
 位置情報から現在地の気温を取得し、お気に入り地点を最大3件まで管理できるシンプルな天気アプリです。  
 オフラインキャッシュに対応しているため、電波が弱い環境でも予報を確認できます。  
 （React Native + Expo 製）
