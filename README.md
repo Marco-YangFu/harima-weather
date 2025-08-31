@@ -116,3 +116,5 @@ npx expo run:ios
 ## ライセンス
 
 License: [MIT](./LICENSE)
+
+Last updated: 2025-08-31
