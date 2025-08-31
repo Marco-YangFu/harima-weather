@@ -2,6 +2,7 @@
   "name": "harima-weather",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "homepage": "https://Marco-YangFu.github.io/harima-weather",
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
