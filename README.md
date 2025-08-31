@@ -6,9 +6,12 @@
 
 ---
 
-## デモ
+### Web（スマホで読み取り）
 
-開発中（Webで「天気＋7日グラフ＋お気に入り」まで動作確認済み）
+<a href="https://harima-weather.pages.dev/" target="_blank">
+  <img src="./docs/qr-web.png" width="180" alt="WebデモQR" />
+</a>  
+➡︎ https://harima-weather.pages.dev/
 
 ---
 
